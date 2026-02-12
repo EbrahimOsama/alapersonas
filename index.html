@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Maternal Wellness Personas - Africa</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #fef5e7 0%, #fadbd8 50%, #f8e8ee 100%);
+            color: #4a4a4a;
+            line-height: 1.6;
+            padding: 20px;
+        }
+
+        .header {
+            text-align: center;
+            padding: 40px 20px;
+            background: linear-gradient(135deg, #d98880 0%, #c39bd3 100%);
+            border-radius: 20px;
+            margin-bottom: 40px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .header h1 {
+            font-family: 'Playfair Display', serif;
+            color: white;
+            font-size: 3em;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        .header p {
+            color: #fff;
+            font-size: 1.2em;
+            font-weight: 300;
+        }
+
+        .personas-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+            padding: 20px;
+        }
+
+        .persona-card {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+        }
+
+        .persona-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.2);
+        }
+
+        .persona-card.malawi { border-top: 6px solid #e74c3c; }
+        .persona-card.uganda { border-top: 6px solid #9b59b6; }
+        .persona-card.ethiopia { border-top: 6px solid #f39c12; }
+        .persona-card.tunisia { border-top: 6px solid #3498db; }
+
+        .persona-image {
+            width: 100%;
+            height: 280px;
+            object-fit: cover;
+            background: linear-gradient(135deg, #fadbd8, #d98880);
+        }
+
+        .persona-header {
+            padding: 25px;
+            background: linear-gradient(135deg, #fef5e7 0%, #fff 100%);
+        }
+
+        .persona-emoji {
+            font-size: 3em;
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        .persona-name {
+            font-family: 'Playfair Display', serif;
+            font-size: 2em;
+            color: #2c3e50;
+            margin-bottom: 8px;
+        }
+
+        .persona-subtitle {
+            color: #7f8c8d;
+            font-size: 0.95em;
+            margin-bottom: 15px;
+        }
+
+        .quick-stats {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        .stat-item {
+            background: white;
+            padding: 10px;
+            border-radius: 10px;
+            border-left: 4px solid #e74c3c;
+            font-size: 0.85em;
+        }
+
+        .stat-item.uganda-stat { border-left-color: #9b59b6; }
+        .stat-item.ethiopia-stat { border-left-color: #f39c12; }
+        .stat-item.tunisia-stat { border-left-color: #3498db; }
+
+        .stat-label {
+            font-weight: 600;
+            color: #34495e;
+            display: block;
+            font-size: 0.9em;
+        }
+
+        .stat-value {
+            color: #7f8c8d;
+            font-size: 0.95em;
+        }
+
+        .persona-content {
+            padding: 25px;
+        }
+
+        .section {
+            margin-bottom: 25px;
+        }
+
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.3em;
+            color: #2c3e50;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .section-icon {
+            font-size: 1.4em;
+        }
+
+        .section-list {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .section-list li {
+            padding: 8px 0 8px 30px;
+            position: relative;
+            color: #555;
+            font-size: 0.95em;
+        }
+
+        .section-list li:before {
+            content: "•";
+            position: absolute;
+            left: 10px;
+            color: #e74c3c;
+            font-size: 1.5em;
+            line-height: 1;
+        }
+
+        .uganda .section-list li:before { color: #9b59b6; }
+        .ethiopia .section-list li:before { color: #f39c12; }
+        .tunisia .section-list li:before { color: #3498db; }
+
+        .interests-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .tag {
+            background: linear-gradient(135deg, #fadbd8, #f8e8ee);
+            color: #d98880;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.85em;
+            font-weight: 500;
+            border: 2px solid #fadbd8;
+        }
+
+        .uganda .tag {
+            background: linear-gradient(135deg, #e8daef, #f4ecf7);
+            color: #9b59b6;
+            border-color: #e8daef;
+        }
+
+        .ethiopia .tag {
+            background: linear-gradient(135deg, #fdebd0, #fef5e7);
+            color: #f39c12;
+            border-color: #fdebd0;
+        }
+
+        .tunisia .tag {
+            background: linear-gradient(135deg, #d6eaf8, #ebf5fb);
+            color: #3498db;
+            border-color: #d6eaf8;
+        }
+
+        .footer {
+            text-align: center;
+            padding: 40px 20px;
+            margin-top: 50px;
+            color: #7f8c8d;
+            font-size: 0.9em;
+        }
+
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2em;
+            }
+
+            .personas-container {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>✨ Maternal Wellness Personas ✨</h1>
+        <p>Understanding the diverse needs of African mothers-to-be</p>
+    </div>
+
+    <div class="personas-container">
+        <!-- Persona 1: Thandiwe Banda -->
+        <div class="persona-card malawi">
+            <img src="https://i.pinimg.com/736x/8b/84/17/8b841799752db5b6e1aa1aa56fe737db.jpg" alt="African woman at market" class="persona-image">
+            <div class="persona-header">
+                <span class="persona-emoji">👩🏾</span>
+                <h2 class="persona-name">Thandiwe Banda</h2>
+                <p class="persona-subtitle">📍 Malawi | Market Vendor | First-time Mother</p>
+                
+                <div class="quick-stats">
+                    <div class="stat-item">
+                        <span class="stat-label">Age</span>
+                        <span class="stat-value">23 years old</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-label">Body Type</span>
+                        <span class="stat-value">Petite / Small frame</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-label">Income</span>
+                        <span class="stat-value">Low income</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-label">Education</span>
+                        <span class="stat-value">Secondary school</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="persona-content">
+                <div class="section">
+                    <h3 class="section-title">
+                        <span class="section-icon">🎯</span>
+                        Needs
+                    </h3>
+                    <ul class="section-list">
+                        <li>Affordable daily back support</li>
+                        <li>Pain relief during walking & carrying goods</li>
+                        <li>Easy-to-understand health guidance</li>
+                    </ul>
+                </div>
+
+                <div class="section">
+                    <h3 class="section-title">
+                        <span class="section-icon">⚠️</span>
+                        Challenges
+                    </h3>
+                    <ul class="section-list">
+                        <li>Long hours standing</li>
+                        <li>Limited access to physiotherapy</li>
+                        <li>Cultural belief that pregnancy pain is "normal"</li>
+                    </ul>
+                </div>
+
+                <div class="section">
+                    <h3 class="section-title">
+                        <span class="section-icon">💝</span>
+                        Interests & Hobbies
+                    </h3>
+                    <div class="interests-tags">
+                        <span class="tag">Community gatherings</span>
+                        <span class="tag">Cooking</span>
+                        <span class="tag">Women's support groups</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Persona 2: Aisha Namusoke -->
+        <div class="persona-card uganda">
+            <img src="https://i.pinimg.com/736x/8b/84/17/8b841799752db5b6e1aa1aa56fe737db.jpg" alt="African woman teaching" class="persona-image">
+            <div class="persona-header">
+                <span class="persona-emoji">👩🏿</span>
+                <h2 class="persona-name">Aisha Namusoke</h2>
+                <p class="persona-subtitle">📍 Uganda | Primary School Teacher | Second Pregnancy</p>
+                
+                <div class="quick-stats">
+                    <div class="stat-item uganda-stat">
+                        <span class="stat-label">Age</span>
+                        <span class="stat-value">29 years old</span>
+                    </div>
+                    <div class="stat-item uganda-stat">
+                        <span class="stat-label">Body Type</span>
+                        <span class="stat-value">Plus-size / Curvy</span>
+                    </div>
+                    <div class="stat-item uganda-stat">
+                        <span class="stat-label">Income</span>
+                        <span class="stat-value">Lower-middle income</span>
+                    </div>
+                    <div class="stat-item uganda-stat">
+                        <span class="stat-label">Education</span>
+                        <span class="stat-value">Teaching diploma</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="persona-content">
+                <div class="section">
+                    <h3 class="section-title">
+                        <span class="section-icon">🎯</span>
+                        Needs
+                    </h3>
+                    <ul class="section-list">
+                        <li>Discreet wearable back & pelvic support</li>
+                        <li>Relief while standing long teaching hours</li>
+                        <li>Comfortable solutions for larger body sizes</li>
+                    </ul>
+                </div>
+
+                <div class="section">
+                    <h3 class="section-title">
+                        <span class="section-icon">⚠️</span>
+                        Challenges
+                    </h3>
+                    <ul class="section-list">
+                        <li>Pelvic pressure increases during work</li>
+                        <li>Limited maternity accommodations</li>
+                        <li>Fatigue from balancing work & pregnancy</li>
+                    </ul>
+                </div>
+
+                <div class="section">
+                    <h3 class="section-title">
+                        <span class="section-icon">💝</span>
+                        Interests & Hobbies
+                    </h3>
+                    <div class="interests-tags">
+                        <span class="tag">Educational content</span>
+                        <span class="tag">Church activities</span>
+                        <span class="tag">Parenting communities</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Persona 3: Selam Tesfaye -->
+        <div class="persona-card ethiopia">
+            <img src="https://i.pinimg.com/736x/8b/84/17/8b841799752db5b6e1aa1aa56fe737db.jpg" alt="African woman in café" class="persona-image">
+            <div class="persona-header">
+                <span class="persona-emoji">👩🏽</span>
+                <h2 class="persona-name">Selam Tesfaye</h2>
+                <p class="persona-subtitle">📍 Ethiopia | Café Owner | Third Pregnancy</p>
+                
+                <div class="quick-stats">
+                    <div class="stat-item ethiopia-stat">
+                        <span class="stat-label">Age</span>
+                        <span class="stat-value">35 years old</span>
+                    </div>
+                    <div class="stat-item ethiopia-stat">
+                        <span class="stat-label">Body Type</span>
+                        <span class="stat-value">Tall / Athletic build</span>
+                    </div>
+                    <div class="stat-item ethiopia-stat">
+                        <span class="stat-label">Income</span>
+                        <span class="stat-value">Self-employed, variable</span>
+                    </div>
+                    <div class="stat-item ethiopia-stat">
+                        <span class="stat-label">Education</span>
+                        <span class="stat-value">Vocational training</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="persona-content">
+                <div class="section">
+                    <h3 class="section-title">
+                        <span class="section-icon">🎯</span>
+                        Needs
+                    </h3>
+                    <ul class="section-list">
+                        <li>Strong physical back stabilization</li>
+                        <li>Support during lifting & long standing hours</li>
+                        <li>Flexible, durable daily-use products</li>
+                    </ul>
+                </div>
+
+                <div class="section">
+                    <h3 class="section-title">
+                        <span class="section-icon">⚠️</span>
+                        Challenges
+                    </h3>
+                    <ul class="section-list">
+                        <li>Cannot reduce workload</li>
+                        <li>Increasing pelvic instability</li>
+                        <li>Fear of long-term physical damage</li>
+                    </ul>
+                </div>
+
+                <div class="section">
+                    <h3 class="section-title">
+                        <span class="section-icon">💝</span>
+                        Interests & Hobbies
+                    </h3>
+                    <div class="interests-tags">
+                        <span class="tag">Cooking</span>
+                        <span class="tag">Business networking</span>
+                        <span class="tag">Community events</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Persona 4: Lina Ben Youssef -->
+        <div class="persona-card tunisia">
+            <img src="https://i.pinimg.com/736x/8b/84/17/8b841799752db5b6e1aa1aa56fe737db.jpg" alt="Professional African woman" class="persona-image">
+            <div class="persona-header">
+                <span class="persona-emoji">👩🏻</span>
+                <h2 class="persona-name">Lina Ben Youssef</h2>
+                <p class="persona-subtitle">📍 Tunisia | Office Administrator | Late Pregnancy</p>
+                
+                <div class="quick-stats">
+                    <div class="stat-item tunisia-stat">
+                        <span class="stat-label">Age</span>
+                        <span class="stat-value">41 years old</span>
+                    </div>
+                    <div class="stat-item tunisia-stat">
+                        <span class="stat-label">Body Type</span>
+                        <span class="stat-value">Average build</span>
+                    </div>
+                    <div class="stat-item tunisia-stat">
+                        <span class="stat-label">Income</span>
+                        <span class="stat-value">Middle income</span>
+                    </div>
+                    <div class="stat-item tunisia-stat">
+                        <span class="stat-label">Education</span>
+                        <span class="stat-value">University degree</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="persona-content">
+                <div class="section">
+                    <h3 class="section-title">
+                        <span class="section-icon">🎯</span>
+                        Needs
+                    </h3>
+                    <ul class="section-list">
+                        <li>Comfortable seated lumbar support</li>
+                        <li>Medically approved pregnancy pain solutions</li>
+                        <li>Guidance for safe movement during pregnancy</li>
+                    </ul>
+                </div>
+
+                <div class="section">
+                    <h3 class="section-title">
+                        <span class="section-icon">⚠️</span>
+                        Challenges
+                    </h3>
+                    <ul class="section-list">
+                        <li>Severe lower back pain while sitting</li>
+                        <li>Anxiety due to high-risk pregnancy age</li>
+                        <li>Conflicting online medical information</li>
+                    </ul>
+                </div>
+
+                <div class="section">
+                    <h3 class="section-title">
+                        <span class="section-icon">💝</span>
+                        Interests & Hobbies
+                    </h3>
+                    <div class="interests-tags">
+                        <span class="tag">Reading</span>
+                        <span class="tag">Prenatal wellness classes</span>
+                        <span class="tag">Health research online</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer">
+        <p>💕 Designed with care to understand and support maternal wellness across Africa 💕</p>
+        <p style="margin-top: 10px; font-size: 0.85em;">Each mother's journey is unique and deserves compassionate, culturally-informed support</p>
+    </div>
+</body>
+</html>
